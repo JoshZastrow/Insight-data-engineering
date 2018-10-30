@@ -1,9 +1,8 @@
-import csv
+from __future__ import print_functionimport csv
 from operator import itemgetter
 import os
 import argparse
 import sys
-from __future__ import print_function
 
 def get_top_10_occupations_and_states(input_file, output_path, year=2019):
     '''
