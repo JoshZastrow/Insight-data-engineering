@@ -96,9 +96,11 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
 
                 if item == 'FL':
                     print('FL Counts:', count[item])
+            print()
 
     print('total certified:', total_certified)
     print('length of stored counts: {} occ, {} states'.format(len(counts[0]), len(counts[1])))
+    print()
     # Convert dictionary of counts into list
     for count, fname, id in zip(counts, fnames, col_id):
         
@@ -109,7 +111,9 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
             NAME = label_name[item]
             NUMBER_CERTIFIED = count[item]
             PERCENTAGES = round(count[item] / total_certified * 100,1)
-            
+            if item == 'FL':
+                print('FL \n\tcount: {}\n\tcertified: {}\n\tPercentage:{}\n\tformatted: {0:2f}'.format(count[item], 
+                    total_certified, PERCENTAGES, PERCENTAGES))
             row_result = (NAME, NUMBER_CERTIFIED, '{:0.2f}%'.format(PERCENTAGES))
             results[i] = row_result
 
