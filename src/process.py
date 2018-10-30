@@ -1,4 +1,3 @@
-
 import csv
 from operator import itemgetter
 import os
@@ -83,6 +82,7 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
                     count[item] = 1
                     label_name[item] = row[lbl]
 
+    
     # Convert dictionary of counts into list
     for count, fname, id in zip(counts, fnames, col_id):
         
@@ -93,7 +93,7 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
             NAME = label_name[item]
             NUMBER_CERTIFIED = count[item]
             PERCENTAGES = round(count[item] / total_certified * 100,1)
-
+            
             row_result = (NAME, NUMBER_CERTIFIED, '{:0.2f}%'.format(PERCENTAGES))
             results[i] = row_result
 
@@ -103,16 +103,13 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
         # Filter for top results
         if len(results) > top_rows:
             results = results[:top_rows]
-
+    
         # Write
         with open(os.path.join(output_path, fname), 'w') as f:
             output = csv.writer(f, delimiter=';')
             output.writerow([id, 'NUMBER_CERTIFIED_APPLICATIONS','PERCENTAGE'])
-            
             for row_data in results:
                 output.writerow(row_data)
-
-                
                 
 if __name__ == '__main__':
     
@@ -122,10 +119,10 @@ if __name__ == '__main__':
                     help="path to input file. Example: ./input/H1B_FY_2014.csv")
     ap.add_argument("-o", "--output_folder", 
                     required=True,
-	                help="path to output folder")
+                    help="path to output folder")
     ap.add_argument("-y", "--year", 
                     required=False,
-	                help="2014 dataset has different column names. If processing" + 
+                    help="2014 dataset has different column names. If processing" + 
                    " data from 2014, set this equal to 2014")
     args = vars(ap.parse_args())
     
