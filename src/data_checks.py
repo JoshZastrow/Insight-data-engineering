@@ -6,7 +6,7 @@ def check_csv(input_file):
     
 def check_for_required_columns(file_path, 
                                fields=['CASE_STATUS', 
-                                       'EMPLOYER_STATE', 
+                                       'WORKSITE_STATE', 
                                        'SOC_CODE', 
                                        'JOB_TITLE']):
     '''

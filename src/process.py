@@ -55,8 +55,8 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
         items  = ['LCA_CASE_SOC_CODE', 'LCA_CASE_EMPLOYER_STATE']
     else:
         STATUS = 'CASE_STATUS'
-        labels = ['JOB_TITLE', 'EMPLOYER_STATE']
-        items  = ['SOC_CODE', 'EMPLOYER_STATE']
+        labels = ['JOB_TITLE', 'WORKSITE_STATE']
+        items  = ['SOC_CODE', 'WORKSITE_STATE']
         
     fnames = ['top_10_occupations.txt', 'top_10_states.txt']
     col_id = ['TOP_OCCUPATIONS', 'TOP_STATES']
