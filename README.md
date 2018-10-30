@@ -65,9 +65,9 @@ The input data gets processed through two functions: `data_checks.py` and `proce
 The `process.py` module reads in the CSV line by line, checks the `CASE_STATUS` field for `CERTIFIED` visas, then increments the counts in a dictionary that contains the states and a dictionary that contains the SOC codes. The equivalent `Job Title` label is stored in a dictionary according to the `SOC Codes`, but was not used as the `key-value` pair because there were a few typos and multiple job names for a given SOC Code. 
 
 The dictionary is then processed into a list containing tuples of the desired output, namely:
-      - OCCUPATION / STATE
-      - NUMBER CERTIFIED APPLICATIONS
-      - PERCENTAGE
+- OCCUPATION / STATE
+- NUMBER CERTIFIED APPLICATIONS
+- PERCENTAGE
 
 The list is sorted using Python's built in [Timsort](https://en.wikipedia.org/wiki/Timsort) by `NUMBER CERTIFIED APPLICATIONS` then equivalent `OCCUPATION / STATE` label. This sorted list is filter for the top 10 rows if there are more than 10 rows.
 
