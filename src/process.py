@@ -39,7 +39,6 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
         
     '''
     
-    print(sys.version)
     assert input_file[-4:] == '.csv', 'IO Error: Input File should be in .csv format'
     assert os.path.exists(input_file), 'Cannot find {}'.format(input_file)
     assert os.path.isdir(output_path), ('{} not found. Cannot write output.'.format(output_path))
@@ -68,21 +67,11 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
         readers = csv.DictReader(f, delimiter=';')
 
         for i, row in enumerate(readers):
-            print('line', i, end=' ')
             # Skip uncertified entries
             if row[STATUS] != 'CERTIFIED':
-                for k,v in row.items():
-                    if k in ['CASE_STATUS', 'JOB_TITLE', 'WORKSITE_STATE']:
-                        print('{:30}'.format(v), end = '')
-                print('<< NOT CERTIFIED')
                 continue
             
             total_certified += 1
-
-            for k,v in row.items():
-                if k in ['CASE_STATUS', 'JOB_TITLE', 'WORKSITE_STATE']:
-                    print('{:30}'.format(v), end='; ')
-            print('(certified count:',total_certified, end = ' ')          
 
             # Count occurences of SOC Codes and State
             for count, data, lbl in zip(counts, items, labels):
@@ -94,13 +83,6 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
                     count[item] = 1
                     label_name[item] = row[lbl]
 
-                if item == 'FL':
-                    print('FL Counts:', count[item])
-            print()
-
-    print('total certified:', total_certified)
-    print('length of stored counts: {} occ, {} states'.format(len(counts[0]), len(counts[1])))
-    print()
     # Convert dictionary of counts into list
     for count, fname, id in zip(counts, fnames, col_id):
         
@@ -122,11 +104,10 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
         # Sort list by count, name
         results = sorted(results, key=itemgetter(1,0), reverse=True)
 
-        print('Original length of result: {}'.format(len(results)))
         # Filter for top results
         if len(results) > top_rows:
             results = results[:top_rows]
-        print('top length of results:', len(results))
+
         # Write
         with open(os.path.join(output_path, fname), 'w') as f:
             output = csv.writer(f, delimiter=';')
