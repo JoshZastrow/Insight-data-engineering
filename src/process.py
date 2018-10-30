@@ -70,7 +70,9 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
             if row[STATUS] != 'CERTIFIED':
                 for k,v in row.items():
                     if k in ['CASE_STATUS', 'JOB_TITLE', 'WORKSITE_STATE']:
-                        print('{:40}'.format(v), end='')
+                        print(v, end='')
+                        print('; ', end='')
+                print()
                 continue
             
             total_certified += 1
