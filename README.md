@@ -39,7 +39,8 @@ This allows you to specify the input file path and output folder. see `python .s
       ├── README.md 
       ├── run.sh
       ├── src
-      │   └──h1b_counting.py
+      │   └──process.py
+      │   └──data_checks.py
       ├── input
       │   └──h1b_input.csv
       ├── output
@@ -49,7 +50,8 @@ This allows you to specify the input file path and output folder. see `python .s
       ├── README.md 
       ├── run.sh
       ├── src
-      │   └──h1b_counting.py
+      │   └──process.py
+      │   └──data_checks.py
       ├── input
       │   └──h1b_input.csv
       ├── output
@@ -82,7 +84,8 @@ The directory structure for your repo should look like this:
       ├── README.md 
       ├── run.sh
       ├── src
-      │   └──h1b_counting.py
+      │   └──process.py
+      │   └──data_checks.py
       ├── input
       │   └──h1b_input.csv
       ├── output
