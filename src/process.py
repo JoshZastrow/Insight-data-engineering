@@ -64,10 +64,13 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
     # Read in csv file
     with open(input_file) as f:
         readers = csv.DictReader(f, delimiter=';')
-        
+
         for row in readers:
             # Skip uncertified entries
             if row[STATUS] != 'CERTIFIED':
+                for k,v in row.items():
+                    if k in ['CASE_STATUS', 'JOB_TITLE', 'WORKSITE_STATE']:
+                        print('{:40}'.format(v), end='')
                 continue
             
             total_certified += 1
@@ -81,8 +84,8 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
                 else:
                     count[item] = 1
                     label_name[item] = row[lbl]
-
-    
+    print('total certified:', total_certified)
+    print('length of stored counts: {} occ, {} states'.format(len(counts[0]), len(counts[1])))
     # Convert dictionary of counts into list
     for count, fname, id in zip(counts, fnames, col_id):
         
@@ -100,10 +103,11 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
         # Sort list by count, name
         results = sorted(results, key=itemgetter(1,0), reverse=True)
 
+        print('Original length of result: {}'.format(len(results)))
         # Filter for top results
         if len(results) > top_rows:
             results = results[:top_rows]
-    
+        print('top length of results:', len(results))
         # Write
         with open(os.path.join(output_path, fname), 'w') as f:
             output = csv.writer(f, delimiter=';')
