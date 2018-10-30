@@ -67,31 +67,36 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
     with open(input_file) as f:
         readers = csv.DictReader(f, delimiter=';')
 
-        for row in readers:
+        for i, row in enumerate(readers):
+            print('line', i, end=' ')
             # Skip uncertified entries
             if row[STATUS] != 'CERTIFIED':
                 for k,v in row.items():
                     if k in ['CASE_STATUS', 'JOB_TITLE', 'WORKSITE_STATE']:
-                        print(v)
-                        print('; ')
-                print()
+                        print('{:30}'.format(v), end = '')
+                print('<< NOT CERTIFIED')
                 continue
             
             total_certified += 1
 
             for k,v in row.items():
                 if k in ['CASE_STATUS', 'JOB_TITLE', 'WORKSITE_STATE']:
-                    print(v, end='; ')
-            print()           
+                    print('{:30}'.format(v), end='; ')
+            print('(certified count:',total_certified, end = ' ')          
+
             # Count occurences of SOC Codes and State
             for count, data, lbl in zip(counts, items, labels):
                 item = row[data]
-                
+
                 if item in count:
                     count[item] += 1
                 else:
                     count[item] = 1
                     label_name[item] = row[lbl]
+
+                if item == 'FL':
+                    print('FL Counts:', count[item])
+
     print('total certified:', total_certified)
     print('length of stored counts: {} occ, {} states'.format(len(counts[0]), len(counts[1])))
     # Convert dictionary of counts into list
