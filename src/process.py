@@ -1,4 +1,5 @@
-from __future__ import print_functionimport csv
+from __future__ import print_function
+import csv
 from operator import itemgetter
 import os
 import argparse
