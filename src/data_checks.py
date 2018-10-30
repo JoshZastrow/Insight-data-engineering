@@ -26,7 +26,7 @@ def check_for_required_columns(file_path,
         >>> check_for_required_colums('input/H1B_FY_2015.csv')
     '''
     
-    with open(file_path, newline='') as f:
+    with open(file_path) as f:
         readers = csv.reader(f, delimiter=';')
         headers = next(readers)
     

@@ -63,7 +63,7 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
     total_certified = 0
     
     # Read in csv file
-    with open(input_file, newline='') as f:
+    with open(input_file) as f:
         readers = csv.DictReader(f, delimiter=';')
         
         for row in readers:
