@@ -94,9 +94,9 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
             NUMBER_CERTIFIED = count[item]
             PERCENTAGES = round(count[item] / total_certified * 100,1)
             if item == 'FL':
-                print('FL \n\tcount: {}\n\tcertified: {}\n\tPercentage:{}\n\tformatted: {0:2f}'.format(count[item], 
+                print('FL \n\tcount: {}\n\tcertified: {}\n\tPercentage:{}\n\tformatted: {}%'.format(count[item], 
                     total_certified, PERCENTAGES, PERCENTAGES))
-            row_result = (NAME, NUMBER_CERTIFIED, '{:0.2f}%'.format(PERCENTAGES))
+            row_result = (NAME, NUMBER_CERTIFIED, '{}%'.format(PERCENTAGES))
             results[i] = row_result
 
         # Sort list by count, name
