@@ -2,7 +2,7 @@ import csv
 from operator import itemgetter
 import os
 import argparse
-
+import sys
             
 def get_top_10_occupations_and_states(input_file, output_path, year=2019):
     '''
@@ -38,6 +38,7 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
         
     '''
     
+    print(sys.version)
     assert input_file[-4:] == '.csv', 'IO Error: Input File should be in .csv format'
     assert os.path.exists(input_file), 'Cannot find {}'.format(input_file)
     assert os.path.isdir(output_path), ('{} not found. Cannot write output.'.format(output_path))
@@ -70,8 +71,8 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
             if row[STATUS] != 'CERTIFIED':
                 for k,v in row.items():
                     if k in ['CASE_STATUS', 'JOB_TITLE', 'WORKSITE_STATE']:
-                        print(v, end='')
-                        print('; ', end='')
+                        print(v,)
+                        print('; ')
                 print()
                 continue
             
