@@ -92,7 +92,7 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
             # Retrieve metrics
             NAME = label_name[item]
             NUMBER_CERTIFIED = count[item]
-            PERCENTAGES = round(count[item] / total_certified * 100,1)
+            PERCENTAGES = round(float(count[item]) / float(total_certified) * 100,1)
             if item == 'FL':
                 print('FL \n\tcount: {}\n\tcertified: {}\n\tPercentage:{}\n\tformatted: {}%'.format(count[item], 
                     total_certified, PERCENTAGES, PERCENTAGES))
