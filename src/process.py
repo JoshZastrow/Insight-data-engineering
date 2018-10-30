@@ -114,6 +114,8 @@ def get_top_10_occupations_and_states(input_file, output_path, year=2019):
             if item == 'FL':
                 print('FL \n\tcount: {}\n\tcertified: {}\n\tPercentage:{}\n\tformatted: {0:2f}'.format(count[item], 
                     total_certified, PERCENTAGES, PERCENTAGES))
+            else:
+                print('computing item', item)
             row_result = (NAME, NUMBER_CERTIFIED, '{:0.2f}%'.format(PERCENTAGES))
             results[i] = row_result
 
